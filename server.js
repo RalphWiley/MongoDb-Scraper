@@ -5,6 +5,7 @@ var bodyParser = require("body-parser");
 var cheerio = require("cheerio");
 var request = require("request");
 var mongodb = require("mongodb");
+mongoose.Promise = Promise;
 
 var PORT = process.env.PORT || 3000;
 var app = express();
@@ -21,10 +22,9 @@ app.use(bodyParser.urlencoded({
     extended: false 
 }));
 
-
 app.use(router); 
 
-var db = process.env.MONGODB_URI || "mongodb://localhost/mongoscrapdb";
+var db = process.env.MONGODB_URI || "mongodb://heroku_nxs57bwp:ecpbtogcs960ior0fpnl7fmdi9@ds235850.mlab.com:35850/heroku_nxs57bwp";
 
 mongoose.connect(db, function(error) {
     if (error) {
@@ -39,7 +39,4 @@ else {
 
 app.listen(PORT, function() {
     console.log("Listening on port: " + PORT);
-
-
-
 });

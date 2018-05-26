@@ -1,7 +1,7 @@
 var scrape = require("../scripts/scrape");
 var makeDate = require("../scripts/date");
 
-var Headlines = require("../models/Headlines");
+var Headline = require("../models/Headline");
 
 module.exports = {
     fetch: function(cb) {
@@ -12,7 +12,7 @@ module.exports = {
                 articles[i].saved = false;
             }
 
-            Headlines.collection.insertMany(articles, {ordered:false}, function(err, docs) {
+            Headline.collection.insertMany(articles, {ordered:false}, function(err, docs) {
                 cb(err, docs);
             });
         });
