@@ -5,7 +5,7 @@ var Schema = mongoose.Schema;
 var headlineSchema = new Schema({
     headline: {
         type: String, 
-        require: true, 
+        required: true, 
         unique: true 
     },
 
@@ -22,4 +22,4 @@ var headlineSchema = new Schema({
 
 var Headline = mongoose.model("Headline", headlineSchema);
 
-module.express = Headline;
+module.exports = Headline;

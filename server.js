@@ -9,20 +9,24 @@ mongoose.Promise = Promise;
 
 var PORT = process.env.PORT || 3000;
 var app = express();
-var router = express.Router();
+// var router = express.Router();
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static("public"));
+
+require("./config/routes.js")(app);
 
 app.engine("handlebars", expressHandlebars({
     defaultLayout: "main"
 }));
 app.set("view engine", "handlebars");
+
+app.get("/", function(req, res) {
+    res.render("index", {});
+});
     
 app.use(bodyParser.urlencoded({
-    extended: false 
+    extended: true 
 }));
-
-app.use(router); 
 
 var db = process.env.MONGODB_URI || "mongodb://heroku_nxs57bwp:ecpbtogcs960ior0fpnl7fmdi9@ds235850.mlab.com:35850/heroku_nxs57bwp";
 

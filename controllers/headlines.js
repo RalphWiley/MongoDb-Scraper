@@ -12,24 +12,26 @@ module.exports = {
                 articles[i].saved = false;
             }
 
-            Headline.collection.insertMany(articles, {ordered:false}, function(err, docs) {
+            Headline.collection.insertMany(articles, {
+                ordered:false
+            }, function(err, docs) {
                 cb(err, docs);
             });
         });
     },
-    delete: function (query, cb) {
+    delete: function(query, cb) {
         Headline.remove(query, cb);
     },
-    get: function (query, cb) {
+    get: function(query, cb) {
         Headline.find(query)
             .sort({
                 _id: -1
             })
-            .exec(function (err, doc) {
+            .exec(function(err, doc) {
                 cb(doc);
             });
     },
-    update: function (query, cb) {
+    update: function(query, cb) {
         Headline.update({
                 _id: query._id}, {
                     $set: query
